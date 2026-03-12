@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IVMS — Industrial Visitor Management System</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+
+<div class="hero-bg-grid" id="bgGrid"></div>
+<div class="hero-glow" id="glowEl"></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ===== NAV ===== -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showLanding()">IVMS<span class="dot">.</span></div>
+    <div class="nav-links" id="navLinks">
+      <!-- filled by JS -->
+    </div>
+    <div id="navRight" style="display:flex;align-items:center;gap:10px;">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</nav>
+
+<!-- ===== PAGE: LANDING ===== -->
+<div class="page active" id="page-landing">
+  <div class="role-landing">
+    <div class="hero-eyebrow"><span class="pulse"></span> Industrial Visitor Management System</div>
+    <h1 class="role-landing-title">Choose Your <span>Portal</span></h1>
+    <p class="role-landing-sub">IVMS serves two distinct roles. Select the portal that matches your function to access your dedicated interface.</p>
+    <div class="role-cards">
+      <div class="role-card rc-cyan" onclick="enterPortal('registrar')">
+        <span class="role-card-icon">📋</span>
+        <div class="role-card-label">Portal 01</div>
+        <div class="role-card-title">Visit Registrar</div>
+        <div class="role-card-desc">For visitors and registration staff. Complete all pre-visit requirements before arriving at the facility.</div>
+        <div class="role-card-features">
+          <div class="role-feature"><div class="role-feature-dot"></div>Visitor Pre-Registration & Scheduling</div>
+          <div class="role-feature"><div class="role-feature-dot"></div>Department Safety Rules Engine</div>
+          <div class="role-feature"><div class="role-feature-dot"></div>Knowledge Assessment (MCQ)</div>
+          <div class="role-feature"><div class="role-feature-dot"></div>QR Entry Pass Generation</div>
+        </div>
+        <button class="role-card-cta">Enter Registrar Portal →</button>
+      </div>
+      <div class="role-card rc-orange" onclick="enterPortal('authenticator')">
+        <span class="role-card-icon">🔐</span>
+        <div class="role-card-label">Portal 02</div>
+        <div class="role-card-title">Authenticator</div>
+        <div class="role-card-desc">For security staff and gate operators. Verify identities, manage gate access, and monitor facility analytics.</div>
+        <div class="role-card-features">
+          <div class="role-feature"><div class="role-feature-dot"></div>Identity Verification (OTP + Face)</div>
+          <div class="role-feature"><div class="role-feature-dot"></div>Contactless Gate Entry Control</div>
+          <div class="role-feature"><div class="role-feature-dot"></div>Real-Time Admin Dashboard</div>
+          <div class="role-feature"><div class="role-feature-dot"></div>AI Anomaly Alerts & Reports</div>
+        </div>
+        <button class="role-card-cta">Enter Authenticator Portal →</button>
+      </div>
+    </div>
+    <div class="landing-footer">IVMS · AI Industrial Visitor Management · Hackathon 2025 · <span>SmartVerse</span></div>
+  </div>
+</div>
+
+<!-- ===== REGISTRAR: HOME ===== -->
+<div class="page" id="page-reg-home">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="pulse"></span> Visit Registrar Portal</div>
+      <h1 class="hero-title">Visitor<br><span class="line2">Registration</span><br><span class="line3">Portal</span></h1>
+      <p class="hero-desc">Complete your entire pre-visit registration online — submit details, review safety rules, pass the knowledge assessment, and receive your QR entry pass before you arrive.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="navigate('register')">Start Registration →</button>
+        <button class="btn-secondary" onclick="navigate('safety')">🦺 View Safety Rules</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-num">~0s</div><div class="stat-label">Gate Time After Pre-Reg</div></div>
+      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Registration Steps</div></div>
+      <div class="stat-card"><div class="stat-num">75%</div><div class="stat-label">Min. Assessment Score</div></div>
+      <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">Contactless Process</div></div>
+    </div>
+  </section>
+  <div class="section">
+    <div class="section-header">
+      <span class="section-tag">Registrar Modules</span>
+      <h2 class="section-title">Your <span>Tools</span></h2>
+    </div>
+    <div class="modules-grid">
+      <div class="module-tile" onclick="navigate('register')">
+        <div class="tile-num">MODULE 01</div>
+        <span class="tile-icon">📋</span>
+        <div class="tile-name">Pre-Registration & Scheduling</div>
+        <div class="tile-desc">Self-registration portal with host approval, QR pass generation, and geo-fencing. Reduces gate time to near zero.</div>
+        <div class="tile-tags"><span class="chip chip-cyan">QR Pass</span><span class="chip chip-default">Host Approval</span><span class="chip chip-orange">Geo-Fencing</span></div>
+      </div>
+      <div class="module-tile" onclick="navigate('safety')">
+        <div class="tile-num">MODULE 02</div>
+        <span class="tile-icon">🦺</span>
+        <div class="tile-name">Dynamic Safety Rules Engine</div>
+        <div class="tile-desc">Adapts PPE requirements and safety checklists based on the specific department being visited.</div>
+        <div class="tile-tags"><span class="chip chip-cyan">AI Risk Scoring</span><span class="chip chip-default">PPE Mapping</span><span class="chip chip-orange">Auto Restrict</span></div>
+      </div>
+      <div class="module-tile">
+        <div class="tile-num">MODULE 03</div>
+        <span class="tile-icon">🎬</span>
+        <div class="tile-name">Intelligent Safety Video</div>
+        <div class="tile-desc">AI-compressed adaptive safety video with skip logic, multilingual narration, and embedded department-specific quizzes.</div>
+        <div class="tile-tags"><span class="chip chip-cyan">NLP Summary</span><span class="chip chip-default">Skip Logic</span><span class="chip chip-orange">Multilingual</span></div>
+      </div>
+      <div class="module-tile" onclick="navigate('assessment')">
+        <div class="tile-num">MODULE 04</div>
+        <span class="tile-icon">🧠</span>
+        <div class="tile-name">Knowledge Assessment Engine</div>
+        <div class="tile-desc">Timed MCQ tests with AI-generated questions, adaptive difficulty, and fraud prevention before pass issuance.</div>
+        <div class="tile-tags"><span class="chip chip-cyan">AI Questions</span><span class="chip chip-default">Adaptive</span><span class="chip chip-orange">Anti-Fraud</span></div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-inner">
+    <div class="footer-logo">IVMS<span>.</span></div>
+    <div class="footer-links">
+      <button class="footer-link" onclick="navigate('register')">Pre-Register</button>
+      <button class="footer-link" onclick="navigate('safety')">Safety Rules</button>
+      <button class="footer-link" onclick="navigate('assessment')">Assessment</button>
+    </div>
+    <div class="footer-note">AI Industrial Visitor Management · Hackathon 2025</div>
+  </div></footer>
+</div>
+
+<!-- ===== AUTHENTICATOR: HOME ===== -->
+<div class="page" id="page-auth-home">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow-orange"><span style="width:8px;height:8px;background:var(--orange);border-radius:50%;animation:pulseAnim 1.5s ease-in-out infinite;display:inline-block;"></span> Authenticator Portal</div>
+      <h1 class="hero-title">Security &<br><span class="line2-orange">Authentication</span><br><span class="line3">Portal</span></h1>
+      <p class="hero-desc">AI-powered identity verification, contactless gate access control, and real-time facility analytics — all in one intelligent security interface.</p>
+      <div class="hero-actions">
+        <button class="btn-primary orange-btn" onclick="navigate('verify')">Verify Visitor →</button>
+        <button class="btn-secondary" onclick="navigate('dashboard')">📊 Open Dashboard</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-num stat-num-orange">~0s</div><div class="stat-label">Gate Processing Time</div></div>
+      <div class="stat-card"><div class="stat-num stat-num-orange">99.4%</div><div class="stat-label">Face Match Accuracy</div></div>
+      <div class="stat-card"><div class="stat-num stat-num-orange">3</div><div class="stat-label">Verification Layers</div></div>
+      <div class="stat-card"><div class="stat-num stat-num-orange">100%</div><div class="stat-label">Contactless Entry</div></div>
+    </div>
+  </section>
+  <div class="section">
+    <div class="section-header"><span class="section-tag">Authenticator Modules</span><h2 class="section-title">Security <span class="span-orange">Tools</span></h2></div>
+    <div class="modules-grid">
+      <div class="module-tile" onclick="navigate('verify')"><div class="tile-num">MODULE 05</div><span class="tile-icon">🔐</span><div class="tile-name">Identity Verification</div><div class="tile-desc">OTP + liveness detection + FaceNet face embedding + Aadhaar API + blacklist database cross-check.</div><div class="tile-tags"><span class="chip chip-cyan">Liveness</span><span class="chip chip-default">FaceNet</span><span class="chip chip-orange">Aadhaar</span></div></div>
+      <div class="module-tile" onclick="navigate('gate')"><div class="tile-num">MODULE 06</div><span class="tile-icon">🚪</span><div class="tile-name">Contactless Gate Entry</div><div class="tile-desc">QR scan → face match → barrier opens. Full entry/exit logging, auto pass expiry, and evacuation tracking.</div><div class="tile-tags"><span class="chip chip-cyan">QR+Face</span><span class="chip chip-default">Barrier API</span><span class="chip chip-orange">Evacuation</span></div></div>
+      <div class="module-tile" onclick="navigate('dashboard')"><div class="tile-num">MODULE 07</div><span class="tile-icon">📊</span><div class="tile-name">Admin Dashboard</div><div class="tile-desc">Real-time analytics, compliance reports, AI anomaly detection, peak prediction, and visitor movement heatmaps.</div><div class="tile-tags"><span class="chip chip-cyan">AI Anomaly</span><span class="chip chip-default">Heatmap</span><span class="chip chip-orange">Export</span></div></div>
+      <div class="module-tile"><div class="tile-num">MODULE 08</div><span class="tile-icon">🔒</span><div class="tile-name">Security & Compliance</div><div class="tile-desc">Zero-trust architecture, RBAC, GDPR consent logging, end-to-end encryption, and optional blockchain audit trail.</div><div class="tile-tags"><span class="chip chip-cyan">Zero Trust</span><span class="chip chip-default">GDPR</span><span class="chip chip-orange">Blockchain</span></div></div>
+    </div>
+  </div>
+  <footer><div class="footer-inner">
+    <div class="footer-logo">IVMS<span>.</span></div>
+    <div class="footer-links">
+      <button class="footer-link" onclick="navigate('verify')">Verify ID</button>
+      <button class="footer-link" onclick="navigate('gate')">Gate Entry</button>
+      <button class="footer-link" onclick="navigate('dashboard')">Dashboard</button>
+    </div>
+    <div class="footer-note">AI Industrial Visitor Management · Hackathon 2025</div>
+  </div></footer>
+</div>
+
+<!-- ===== INCLUDE PAGE PARTIALS ===== -->
+<div id="page-register"></div>
+<div id="page-safety"></div>
+<div id="page-assessment"></div>
+<div id="page-verify"></div>
+<div id="page-gate"></div>
+<div id="page-dashboard"></div>
+
+<script src="../js/toast.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/registration.js"></script>
+<script src="../js/safety.js"></script>
+<script src="../js/assessment.js"></script>
+<script src="../js/verify.js"></script>
+<script src="../js/gate.js"></script>
+<script src="../js/dashboard.js"></script>
+<script>
+/* ==============================
+   INIT
+   ============================== */
+// Load page partials
+const pageFiles = {
+  'page-register': 'register.html',
+  'page-safety': 'safety.html',
+  'page-assessment': 'assessment.html',
+  'page-verify': 'verify.html',
+  'page-gate': 'gate.html',
+  'page-dashboard': 'dashboard.html'
+};
+Promise.all(
+  Object.entries(pageFiles).map(([id, file]) =>
+    fetch(file).then(r => r.text()).then(html => {
+      document.getElementById(id).outerHTML = html;
+    })
+  )
+).then(() => {
+  updateNav();
+  setTimeout(() => loadSafety('production', document.querySelector('.dept-list-item')), 100);
+});
+</script>
+</body>
+</html>

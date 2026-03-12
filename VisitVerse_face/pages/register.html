@@ -1,0 +1,134 @@
+<div class="page" id="page-register">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <span class="page-tag">Module 01</span>
+      <h1 class="page-title">Visitor Pre-Registration</h1>
+      <p class="page-desc">Complete registration before arriving — reduce gate time to near zero.</p>
+    </div>
+  </div>
+  <div id="stepperEl" class="stepper">
+    <div class="step-item"><div class="step-circle active" id="sc-1">1</div><span class="step-label active" id="sl-1">Personal Info</span><div class="step-line" id="sline-1"></div></div>
+    <div class="step-item"><div class="step-circle" id="sc-2">2</div><span class="step-label" id="sl-2">Department</span><div class="step-line" id="sline-2"></div></div>
+    <div class="step-item"><div class="step-circle" id="sc-3">3</div><span class="step-label" id="sl-3">Documents</span><div class="step-line" id="sline-3"></div></div>
+    <div class="step-item"><div class="step-circle" id="sc-4">4</div><span class="step-label" id="sl-4">NDA & Consent</span><div class="step-line" id="sline-4"></div></div>
+    <div class="step-item"><div class="step-circle" id="sc-5">5</div><span class="step-label" id="sl-5">QR Pass</span><div></div></div>
+  </div>
+  <div class="form-wrapper">
+    <div id="reg-step-1">
+      <div class="form-card">
+        <div class="form-card-title">Personal Information</div>
+        <div class="form-card-sub">Provide your details to begin the registration process.</div>
+        <div class="form-grid form-grid-2">
+          <div class="form-group"><label class="form-label">Full Name <span>*</span></label><input class="form-input" id="r-name" type="text" placeholder="Ravi Kumar" /></div>
+          <div class="form-group"><label class="form-label">Mobile Number <span>*</span></label><input class="form-input" id="r-phone" type="tel" placeholder="+91 98765 43210" /></div>
+          <div class="form-group"><label class="form-label">Email Address <span>*</span></label><input class="form-input" id="r-email" type="email" placeholder="ravi@company.com" /></div>
+          <div class="form-group"><label class="form-label">Company / Organisation</label><input class="form-input" id="r-company" type="text" placeholder="Acme Industries Pvt Ltd" /></div>
+          <div class="form-group"><label class="form-label">Designation</label><input class="form-input" id="r-desg" type="text" placeholder="Sales Manager" /></div>
+          <div class="form-group"><label class="form-label">Vehicle Number</label><input class="form-input" id="r-vehicle" type="text" placeholder="MH 04 AB 1234" /></div>
+          <div class="form-group"><label class="form-label">Host Employee Name <span>*</span></label><input class="form-input" id="r-host" type="text" placeholder="Priya Sharma" /></div>
+          <div class="form-group"><label class="form-label">Visit Date & Time <span>*</span></label><input class="form-input" id="r-datetime" type="datetime-local" /></div>
+          <div class="form-group" style="grid-column:1/-1;"><label class="form-label">Purpose of Visit <span>*</span></label>
+            <select class="form-select" id="r-purpose">
+              <option value="">— Select purpose —</option>
+              <option>Business Meeting</option><option>Vendor / Supplier</option>
+              <option>Maintenance / Service</option><option>Audit / Inspection</option>
+              <option>Interview / Recruitment</option><option>Contractor Work</option>
+              <option>Delivery</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column:1/-1;"><label class="form-label">Emergency Contact Name & Number</label><input class="form-input" id="r-emergency" type="text" placeholder="Name — +91 98765 00000" /></div>
+        </div>
+        <div class="form-actions"><span class="font-mono" style="font-size:12px;color:var(--text3);">Step 1 of 5</span><button class="btn-primary" onclick="regNext(1)">Continue →</button></div>
+      </div>
+    </div>
+
+    <div id="reg-step-2" style="display:none;">
+      <div class="form-card">
+        <div class="form-card-title">Select Department</div>
+        <div class="form-card-sub">Choose the department you are visiting. Safety rules will be applied accordingly.</div>
+        <div class="dept-grid" id="deptGrid">
+          <div class="dept-card" onclick="selectDept(this,'Production Unit','high')"><span class="dept-icon">🏭</span><div class="dept-name">Production Unit</div><div class="dept-risk risk-high">HIGH RISK</div></div>
+          <div class="dept-card" onclick="selectDept(this,'Chemical Lab','high')"><span class="dept-icon">⚗️</span><div class="dept-name">Chemical Lab</div><div class="dept-risk risk-high">HIGH RISK</div></div>
+          <div class="dept-card" onclick="selectDept(this,'Server Room','medium')"><span class="dept-icon">🖥️</span><div class="dept-name">Server Room</div><div class="dept-risk risk-med">MEDIUM RISK</div></div>
+          <div class="dept-card" onclick="selectDept(this,'Warehouse','medium')"><span class="dept-icon">📦</span><div class="dept-name">Warehouse</div><div class="dept-risk risk-med">MEDIUM RISK</div></div>
+          <div class="dept-card" onclick="selectDept(this,'R&D Lab','medium')"><span class="dept-icon">🔬</span><div class="dept-name">R&D Lab</div><div class="dept-risk risk-med">MEDIUM RISK</div></div>
+          <div class="dept-card" onclick="selectDept(this,'Admin / HR','low')"><span class="dept-icon">🏢</span><div class="dept-name">Admin / HR</div><div class="dept-risk risk-low">LOW RISK</div></div>
+        </div>
+        <div id="ppePreview" style="display:none;margin-top:24px;">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:12px;">Required PPE for this department</div>
+          <div class="ppe-list" id="ppeList"></div>
+        </div>
+        <div class="form-actions"><button class="btn-secondary" onclick="regPrev(2)">← Back</button><button class="btn-primary" onclick="regNext(2)">Continue →</button></div>
+      </div>
+    </div>
+
+    <div id="reg-step-3" style="display:none;">
+      <div class="form-card">
+        <div class="form-card-title">Upload Documents</div>
+        <div class="form-card-sub">Upload required identity and authorization documents for verification.</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="form-group"><label class="form-label">Government ID (Aadhaar / PAN / Passport) <span>*</span></label>
+            <div class="upload-zone" onclick="fakeUpload('govid-success')"><span class="upload-icon">🪪</span><div class="upload-text">Click to upload or drag & drop</div><div class="upload-hint">PNG, JPG, PDF — max 5MB</div><div class="upload-success" id="govid-success">✅ Government ID uploaded successfully</div></div>
+          </div>
+          <div class="form-group"><label class="form-label">Selfie / Passport Photo <span>*</span></label>
+            <div class="upload-zone" onclick="fakeUpload('selfie-success')"><span class="upload-icon">🤳</span><div class="upload-text">Upload a clear recent selfie</div><div class="upload-hint">PNG, JPG — used for face verification</div><div class="upload-success" id="selfie-success">✅ Selfie uploaded successfully</div></div>
+          </div>
+          <div class="form-group"><label class="form-label">Authorization Letter (if contractor / vendor)</label>
+            <div class="upload-zone" onclick="fakeUpload('auth-success')"><span class="upload-icon">📄</span><div class="upload-text">Upload authorization letter</div><div class="upload-hint">Optional — PDF, DOCX, PNG</div><div class="upload-success" id="auth-success">✅ Authorization letter uploaded</div></div>
+          </div>
+        </div>
+        <div class="form-actions"><button class="btn-secondary" onclick="regPrev(3)">← Back</button><button class="btn-primary" onclick="regNext(3)">Continue →</button></div>
+      </div>
+    </div>
+
+    <div id="reg-step-4" style="display:none;">
+      <div class="form-card">
+        <div class="form-card-title">NDA & Safety Consent</div>
+        <div class="form-card-sub">Review and digitally agree to the Non-Disclosure Agreement and site safety policy.</div>
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:10px;">Non-Disclosure Agreement</div>
+        <div class="nda-box"><strong>VISITOR NON-DISCLOSURE AGREEMENT</strong><br><br>By signing this agreement, the visitor agrees to maintain strict confidentiality of all proprietary information, trade secrets, technical data, manufacturing processes, formulations, and business strategies encountered during the visit. The Visitor acknowledges that: (1) All information is confidential; (2) No disclosure to third parties; (3) No photography in restricted areas; (4) Compliance with all safety protocols; (5) Breach may result in legal action. This NDA remains in effect for 3 years from date of visit.</div>
+        <div class="consent-section">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:16px;">Agreements Required</div>
+          <div class="consent-confirm" onclick="toggleConsent('c1')"><div class="toggle" id="c1"></div><span class="consent-label">I have read and agree to the Non-Disclosure Agreement above</span></div>
+          <div style="height:10px;"></div>
+          <div class="consent-confirm" onclick="toggleConsent('c2')"><div class="toggle" id="c2"></div><span class="consent-label">I agree to follow all facility safety rules and PPE requirements during my visit</span></div>
+          <div style="height:10px;"></div>
+          <div class="consent-confirm" onclick="toggleConsent('c3')"><div class="toggle" id="c3"></div><span class="consent-label">I consent to facial recognition and biometric verification for security purposes (GDPR compliant)</span></div>
+          <div style="height:10px;"></div>
+          <div class="consent-confirm" onclick="toggleConsent('c4')"><div class="toggle" id="c4"></div><span class="consent-label">I confirm all submitted information is accurate and I authorize identity verification</span></div>
+        </div>
+        <div class="form-group" style="margin-top:20px;"><label class="form-label">Digital Signature (Type Full Name) <span>*</span></label><input class="form-input" id="r-signature" type="text" placeholder="Type your full name to sign" style="font-family:'Brush Script MT',cursive;font-size:20px;color:var(--cyan);" /></div>
+        <div class="form-actions"><button class="btn-secondary" onclick="regPrev(4)">← Back</button><button class="btn-primary" onclick="regSubmit()">Submit & Generate QR Pass ✓</button></div>
+      </div>
+    </div>
+
+    <div id="reg-step-5" style="display:none;">
+      <div class="form-card">
+        <div class="form-card-title" style="text-align:center;">Registration Complete</div>
+        <div class="qr-display">
+          <div style="display:flex;justify-content:center;margin-bottom:16px;"><span class="qr-success-badge">✅ Entry Pass Generated</span></div>
+          <div class="qr-box">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="qr-img">
+              <rect width="200" height="200" fill="white"/><g fill="black">
+              <rect x="20" y="20" width="60" height="60" fill="none" stroke="black" stroke-width="6"/><rect x="30" y="30" width="40" height="40"/>
+              <rect x="120" y="20" width="60" height="60" fill="none" stroke="black" stroke-width="6"/><rect x="130" y="30" width="40" height="40"/>
+              <rect x="20" y="120" width="60" height="60" fill="none" stroke="black" stroke-width="6"/><rect x="30" y="130" width="40" height="40"/>
+              <rect x="100" y="100" width="10" height="10"/><rect x="115" y="100" width="10" height="10"/><rect x="130" y="100" width="10" height="10"/>
+              <rect x="145" y="100" width="10" height="10"/><rect x="160" y="100" width="10" height="10"/>
+              <rect x="100" y="115" width="10" height="10"/><rect x="115" y="115" width="10" height="10"/>
+              <rect x="145" y="115" width="10" height="10"/><rect x="100" y="130" width="10" height="10"/>
+              <rect x="130" y="130" width="10" height="10"/><rect x="160" y="130" width="10" height="10"/>
+              <rect x="90" y="20" width="10" height="10"/><rect x="90" y="35" width="10" height="10"/></g>
+            </svg>
+          </div>
+          <div class="pass-details" id="passDetails"></div>
+          <p style="font-size:13px;color:var(--text2);margin-bottom:20px;">Your QR pass has been sent via <strong style="color:var(--text)">SMS</strong>, <strong style="color:var(--text)">Email</strong>, and <strong style="color:var(--text)">WhatsApp</strong>.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button class="btn-primary" onclick="navigate('safety')">Next: Safety Induction →</button>
+            <button class="btn-secondary" onclick="navigate('assessment')">Take Assessment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

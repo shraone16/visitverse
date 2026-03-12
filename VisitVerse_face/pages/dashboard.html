@@ -1,0 +1,43 @@
+<div class="page" id="page-dashboard">
+  <div class="page-hero"><div class="page-hero-inner"><span class="page-tag">Module 07</span><h1 class="page-title">Admin Dashboard</h1><p class="page-desc">Real-time analytics, AI anomaly detection, compliance reports, and visitor insights.</p></div></div>
+  <div class="dashboard-layout">
+    <div class="dashboard-grid">
+      <div class="kpi-card"><div class="kpi-top"><span class="kpi-icon">👥</span><span class="kpi-trend up">↑ 12%</span></div><div class="kpi-num text-cyan" id="kpi-visitors">247</div><div class="kpi-label">Total Visitors Today</div><div class="kpi-sub">vs 220 yesterday</div></div>
+      <div class="kpi-card"><div class="kpi-top"><span class="kpi-icon">✅</span><span class="kpi-trend up">↑ 3%</span></div><div class="kpi-num" style="color:var(--green)">94.7%</div><div class="kpi-label">Assessment Pass Rate</div><div class="kpi-sub">Avg score: 82/100</div></div>
+      <div class="kpi-card"><div class="kpi-top"><span class="kpi-icon">🚪</span><span class="kpi-trend down">↓ 2%</span></div><div class="kpi-num" style="color:var(--orange)">18</div><div class="kpi-label">Failed Verifications</div><div class="kpi-sub">Face mismatch: 11, Blacklist: 7</div></div>
+      <div class="kpi-card"><div class="kpi-top"><span class="kpi-icon">⏱</span><span class="kpi-trend up">↑ 60%</span></div><div class="kpi-num" style="color:var(--cyan)">1.2s</div><div class="kpi-label">Avg Gate Clear Time</div><div class="kpi-sub">Previous: 3.1 min manual</div></div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card"><div class="chart-title">Visitor Traffic — Last 7 Days</div><div class="chart-sub">Daily visitor count across all departments</div><div class="chart-canvas-wrap"><canvas id="trafficChart" height="90"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Dept. Distribution</div><div class="chart-sub">Today's visits by department</div><div class="chart-canvas-wrap"><canvas id="deptChart" height="180"></canvas></div></div>
+    </div>
+    <div class="chart-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="chart-card"><div class="chart-title">Assessment Performance</div><div class="chart-sub">Pass vs Fail by department</div><div class="chart-canvas-wrap"><canvas id="assessChart" height="120"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Peak Hour Analysis</div><div class="chart-sub">AI-predicted vs actual traffic</div><div class="chart-canvas-wrap"><canvas id="peakChart" height="120"></canvas></div></div>
+    </div>
+    <div class="table-card" style="margin-bottom:24px;">
+      <div class="table-header"><div class="table-header-title">Recent Visitor Log</div><input class="table-search" type="text" placeholder="Search visitors..." oninput="filterTable(this.value)" id="visitorSearch"/></div>
+      <table id="visitorTable"><thead><tr><th>Visitor</th><th>Company</th><th>Department</th><th>Host</th><th>Time In</th><th>Status</th><th>Assessment</th></tr></thead><tbody id="visitorTableBody"></tbody></table>
+    </div>
+    <div class="anomaly-grid">
+      <div class="anomaly-card">
+        <div class="chart-title" style="margin-bottom:16px;">⚠️ AI Anomaly Alerts</div>
+        <div class="anomaly-alert" onclick="showAnomaly(this)"><div class="anomaly-icon">🔴</div><div><div class="anomaly-text"><strong>Repeat scan attempt</strong> — Same QR used 3x at Gate B</div><div class="anomaly-meta">Visitor: V-2041 · 10:42 AM · Gate B</div></div></div>
+        <div class="anomaly-alert" onclick="showAnomaly(this)"><div class="anomaly-icon">🟠</div><div><div class="anomaly-text"><strong>Off-hours access</strong> — Visitor attempted entry at 11:48 PM</div><div class="anomaly-meta">Visitor: V-1887 · 23:48 · Main Gate</div></div></div>
+        <div class="anomaly-alert" onclick="showAnomaly(this)"><div class="anomaly-icon">🟡</div><div><div class="anomaly-text"><strong>Low face match score</strong> — Match confidence 51% (threshold 80%)</div><div class="anomaly-meta">Visitor: V-2103 · 02:15 PM · Gate A</div></div></div>
+        <div class="anomaly-alert" onclick="showAnomaly(this)"><div class="anomaly-icon">🔴</div><div><div class="anomaly-text"><strong>Blacklist hit</strong> — Visitor matched national security DB</div><div class="anomaly-meta">Visitor: V-1995 · 09:22 AM · Visitor Lobby</div></div></div>
+      </div>
+      <div class="anomaly-card">
+        <div class="chart-title" style="margin-bottom:16px;">📈 AI Predictions — Tomorrow</div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:16px;">Based on historical patterns and scheduled appointments</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;">Expected Peak (9–11 AM)</span><span style="color:var(--cyan);font-family:var(--font-mono);font-size:13px;">68 visitors/hr</span></div><div class="match-bar"><div class="match-fill good" style="width:85%;"></div></div></div>
+          <div style="background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;">Production Dept Congestion Risk</span><span style="color:var(--orange);font-family:var(--font-mono);font-size:13px;">HIGH</span></div><div class="match-bar"><div class="match-fill ok" style="width:70%;"></div></div></div>
+          <div style="background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;">Overall Compliance Score</span><span style="color:var(--green);font-family:var(--font-mono);font-size:13px;">94.2%</span></div><div class="match-bar"><div class="match-fill good" style="width:94%;"></div></div></div>
+          <div style="background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;">Face Match Accuracy</span><span style="color:var(--green);font-family:var(--font-mono);font-size:13px;">99.4%</span></div><div class="match-bar"><div class="match-fill good" style="width:99%;"></div></div></div>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px;background:var(--orange);" onclick="exportReport()">📄 Export Compliance Report</button>
+      </div>
+    </div>
+  </div>
+</div>

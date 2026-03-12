@@ -1,0 +1,17 @@
+<div class="page" id="page-safety">
+  <div class="page-hero"><div class="page-hero-inner"><span class="page-tag">Module 02</span><h1 class="page-title">Department Safety Rules Engine</h1><p class="page-desc">Dynamic PPE requirements and safety checklists — adapts in real-time based on the department selected.</p></div></div>
+  <div class="safety-layout">
+    <div class="dept-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">Select Department</div>
+        <div class="dept-list-item active" onclick="loadSafety('production',this)"><span class="di">🏭</span><div><div class="dn">Production Unit</div><div class="dr risk-high">HIGH RISK</div></div></div>
+        <div class="dept-list-item" onclick="loadSafety('chemical',this)"><span class="di">⚗️</span><div><div class="dn">Chemical Lab</div><div class="dr risk-high">HIGH RISK</div></div></div>
+        <div class="dept-list-item" onclick="loadSafety('server',this)"><span class="di">🖥️</span><div><div class="dn">Server Room</div><div class="dr risk-med">MEDIUM RISK</div></div></div>
+        <div class="dept-list-item" onclick="loadSafety('warehouse',this)"><span class="di">📦</span><div><div class="dn">Warehouse</div><div class="dr risk-med">MEDIUM RISK</div></div></div>
+        <div class="dept-list-item" onclick="loadSafety('rdlab',this)"><span class="di">🔬</span><div><div class="dn">R&D Lab</div><div class="dr risk-med">MEDIUM RISK</div></div></div>
+        <div class="dept-list-item" onclick="loadSafety('admin',this)"><span class="di">🏢</span><div><div class="dn">Admin / HR</div><div class="dr risk-low">LOW RISK</div></div></div>
+      </div>
+    </div>
+    <div class="safety-main" id="safetyMain"></div>
+  </div>
+</div>

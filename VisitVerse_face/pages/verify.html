@@ -1,0 +1,65 @@
+<div class="page" id="page-verify">
+  <div class="page-hero"><div class="page-hero-inner"><span class="page-tag">Module 05</span><h1 class="page-title">Identity Verification System</h1><p class="page-desc">Multi-layer biometric verification — OTP + liveness detection + AI face embedding match.</p></div></div>
+  <div class="verify-layout">
+    <div class="verify-steps">
+      <div class="v-step active" id="vstep-1"><div class="v-step-icon">📱</div><div class="v-step-label">OTP Verify</div></div>
+      <div class="v-step" id="vstep-2"><div class="v-step-icon">🤳</div><div class="v-step-label">Selfie Capture</div></div>
+      <div class="v-step" id="vstep-3"><div class="v-step-icon">🧬</div><div class="v-step-label">Face Matching</div></div>
+      <div class="v-step" id="vstep-4"><div class="v-step-icon">✅</div><div class="v-step-label">Verified</div></div>
+    </div>
+    <div id="verify-1">
+      <div class="verify-card">
+        <div style="font-size:52px;margin-bottom:16px;">📱</div>
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:800;margin-bottom:8px;">Mobile OTP Verification</h2>
+        <p style="font-size:14px;color:var(--text2);margin-bottom:28px;">A 6-digit OTP has been sent to your registered mobile number. Enter it below to proceed.</p>
+        <div style="display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:12px;flex-wrap:wrap;">
+          <input class="form-input" style="width:220px;text-align:center;" id="otpPhone" type="tel" placeholder="+91 XXXXX XXXXX" />
+          <button class="btn-secondary" onclick="sendOTP()">Send OTP →</button>
+        </div>
+        <div class="otp-inputs">
+          <input class="otp-input" maxlength="1" oninput="otpNext(this,null,'otp2')" id="otp1" />
+          <input class="otp-input" maxlength="1" oninput="otpNext(this,'otp1','otp3')" id="otp2" onkeydown="otpBack(event,'otp1')"/>
+          <input class="otp-input" maxlength="1" oninput="otpNext(this,'otp2','otp4')" id="otp3" onkeydown="otpBack(event,'otp2')"/>
+          <input class="otp-input" maxlength="1" oninput="otpNext(this,'otp3','otp5')" id="otp4" onkeydown="otpBack(event,'otp3')"/>
+          <input class="otp-input" maxlength="1" oninput="otpNext(this,'otp4','otp6')" id="otp5" onkeydown="otpBack(event,'otp4')"/>
+          <input class="otp-input" maxlength="1" oninput="otpNext(this,'otp5',null)" id="otp6" onkeydown="otpBack(event,'otp5')"/>
+        </div>
+        <button class="btn-primary" style="margin-top:24px;background:var(--orange);" onclick="verifyOTP()">Verify OTP →</button>
+        <div style="margin-top:16px;font-size:13px;color:var(--text3);">Didn't receive? <button onclick="sendOTP()" style="background:none;border:none;color:var(--orange);cursor:pointer;font-size:13px;">Resend OTP</button></div>
+      </div>
+    </div>
+    <div id="verify-2" style="display:none;">
+      <div class="verify-card">
+        <div style="font-size:16px;font-family:var(--font-display);font-weight:700;margin-bottom:8px;">Liveness Detection & Selfie Capture</div>
+        <p style="font-size:14px;color:var(--text2);margin-bottom:24px;">Look directly at the camera. The system will detect liveness and capture your face embedding.</p>
+        <div class="camera-frame active" id="camFrame"><div class="camera-corners"></div><span class="camera-face" id="camFace">😐</span><div class="camera-scan" id="camScan"></div></div>
+        <div id="livenessStatus" style="font-family:var(--font-mono);font-size:12px;color:var(--cyan);margin-bottom:24px;">🔍 Detecting face position...</div>
+        <button class="btn-primary" style="background:var(--orange);" onclick="captureSelfie()" id="captureBtn">📸 Capture Selfie</button>
+      </div>
+    </div>
+    <div id="verify-3" style="display:none;">
+      <div class="verify-card">
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;">AI Face Embedding Match</h2>
+        <p style="font-size:14px;color:var(--text2);margin-bottom:28px;">FaceNet model comparing live capture against registered ID. Aadhaar cross-verification active.</p>
+        <div id="matchResults"></div>
+        <div id="matchActions" style="display:none;"><button class="btn-primary" style="margin-top:24px;background:var(--orange);" onclick="matchConfirm()">Proceed to Verification ✓</button></div>
+      </div>
+    </div>
+    <div id="verify-4" style="display:none;">
+      <div class="verify-card">
+        <div style="font-size:80px;margin-bottom:16px;">✅</div>
+        <h2 style="font-family:var(--font-display);font-size:28px;font-weight:800;margin-bottom:8px;color:var(--green);">Identity Verified</h2>
+        <p style="font-size:14px;color:var(--text2);margin-bottom:28px;">All verification layers passed. Entry pass is now active and ready for gate scan.</p>
+        <div class="pass-details">
+          <div class="pass-row"><span class="key">Verification Status</span><span class="val cyan">✅ CLEARED</span></div>
+          <div class="pass-row"><span class="key">OTP Verified</span><span class="val">✓ Mobile Confirmed</span></div>
+          <div class="pass-row"><span class="key">Liveness Detection</span><span class="val">✓ Real Person Detected</span></div>
+          <div class="pass-row"><span class="key">Face Match Score</span><span class="val">94.7% confidence</span></div>
+          <div class="pass-row"><span class="key">Blacklist Check</span><span class="val text-green">✓ Cleared</span></div>
+          <div class="pass-row"><span class="key">Aadhaar Verified</span><span class="val">✓ Matched</span></div>
+        </div>
+        <button class="btn-primary" style="margin-top:20px;background:var(--orange);" onclick="navigate('gate')">Proceed to Gate →</button>
+      </div>
+    </div>
+  </div>
+</div>

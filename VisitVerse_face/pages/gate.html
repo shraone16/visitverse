@@ -1,0 +1,36 @@
+<div class="page" id="page-gate">
+  <div class="page-hero"><div class="page-hero-inner"><span class="page-tag">Module 06</span><h1 class="page-title">Contactless Gate Entry</h1><p class="page-desc">QR scan → face match → access granted. Real-time entry and exit logging.</p></div></div>
+  <div class="gate-layout">
+    <div>
+      <div class="gate-terminal">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text2);margin-bottom:20px;">GATE TERMINAL — CHECKPOINT A</div>
+        <div class="gate-status" id="gateStatus">🚪</div>
+        <div class="gate-status-text" id="gateStatusText">Ready for Scan</div>
+        <div class="gate-status-sub" id="gateStatusSub">Present your QR code at the scanner below</div>
+        <div class="barrier" id="barrierEl">
+          <div class="barrier-post"></div>
+          <div class="barrier-arm" id="barrierArm"></div>
+          <div class="barrier-label" id="barrierLabel">● CLOSED</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
+          <button class="btn-primary" style="justify-content:center;" onclick="simulateGateEntry('granted')">✅ Simulate Valid Entry</button>
+          <button class="btn-secondary" style="justify-content:center;" onclick="simulateGateEntry('denied')">❌ Simulate Denied Entry</button>
+          <button class="btn-secondary" style="justify-content:center;" onclick="simulateGateEntry('exit')">🚶 Simulate Exit</button>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="form-card" style="padding:24px;">
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:16px;">Active Visitors on Campus</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="text-align:center;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:16px;"><div style="font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--cyan);" id="activeCount">12</div><div style="font-size:12px;color:var(--text2);">Currently Inside</div></div>
+            <div style="text-align:center;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:16px;"><div style="font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--green);" id="todayCount">47</div><div style="font-size:12px;color:var(--text2);">Total Today</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="recent-entries">
+      <div class="recent-title">Real-Time Entry Log<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);font-family:var(--font-mono);"><div class="live-dot"></div> LIVE</div></div>
+      <div id="entryLog"></div>
+    </div>
+  </div>
+</div>
